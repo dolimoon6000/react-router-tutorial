@@ -9,6 +9,14 @@ class Member extends Component {
         }
     }
 
+    componentWillUpdate() {
+        this.style = { backgroundColor: 'green' }
+    }
+
+    shouldComponentUpdate (nextProps) {
+        return this.props.admin !== nextProps.admin
+    }
+
     render() {
 
         const { admin, name, thumbnail, email, makeAdmin, removeAdmin } = this.props
