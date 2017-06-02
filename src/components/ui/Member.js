@@ -28,7 +28,7 @@ class Member extends Component {
 }
 
 Member.propTypes = {
-    admin: PropTypes.bool.isRequired,
+    admin: PropTypes.bool,
     name: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
