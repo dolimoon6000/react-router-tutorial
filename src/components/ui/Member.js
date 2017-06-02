@@ -8,23 +8,18 @@ class Member extends Component {
             backgroundColor: 'grey'
         }
     }
-    constructor(props) {
-        super(props)
-        this.makeAdmin = this.makeAdmin.bind(this)
-    }
-    makeAdmin() {
-        const { makeAdmin, email } = this.props
-        makeAdmin(email)
-    }
 
     render() {
 
-        const { admin, name, thumbnail, email, makeAdmin } = this.props
+        const { admin, name, thumbnail, email, makeAdmin, removeAdmin } = this.props
 
         return (
             <div className="member" style={this.style}>
                 <h1>{name} {(admin) ? <FaShield /> : null}</h1>
-                <a className="member__make-amin" href="#" onClick={this.makeAdmin}>Make ADMIN</a>
+                {(admin) ?
+                    <a onClick={() => removeAdmin(email)}>Remove Admin</a> :
+                    <a onClick={() => makeAdmin(email)}>Make Admin</a>
+                }
                 <img src={thumbnail} />
                 <p><a className="skiDay__email" href={`mailto:${email}`}>{email}</a></p>
             </div>

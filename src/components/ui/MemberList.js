@@ -7,8 +7,22 @@ class MemberList extends Component {
         super(props)
         this.state = {
             members: [],
-            loading: false
+            loading: false,
+            administrators: []
         }
+        this.makeAdmin = this.makeAdmin.bind(this)
+        this.removeAdmin = this.removeAdmin.bind(this)
+    }
+
+    makeAdmin(email) {
+        const administrators = [...this.state.administrators, email]
+        this.setState({ administrators })
+
+    }
+
+    removeAdmin(email) {
+        const administrators = this.state.administrators.filter(adminEmail => adminEmail !== email)
+        this.setState({ administrators })
     }
 
     componentDidMount() {
@@ -32,8 +46,10 @@ class MemberList extends Component {
                             key={i}
                             name={`${member.name.first} ${member.name.last}`}
                             thumbnail={member.picture.thumbnail}
-                            makeAdmin={email => console.log(email)}
+                            makeAdmin={this.makeAdmin}
+                            removeAdmin={this.removeAdmin}
                             email={member.email}
+                            admin={this.state.administrators.some((adminEmail) => adminEmail === member.email)}
                         />
                     ) :
                     <span>Currently 0 members</span>
