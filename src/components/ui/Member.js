@@ -9,8 +9,8 @@ class Member extends Component {
         }
     }
 
-    componentWillUpdate() {
-        this.style = { backgroundColor: 'green' }
+    componentWillUpdate(nextProps) {
+        this.style = { backgroundColor: (nextProps.admin) ? 'green' : 'purple' }
     }
 
     shouldComponentUpdate (nextProps) {
