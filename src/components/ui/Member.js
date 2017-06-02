@@ -3,6 +3,11 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Member extends Component {
+    componentWillMount() {
+        this.style = {
+            backgroundColor: 'grey'
+        }
+    }
     constructor(props) {
         super(props)
         this.makeAdmin = this.makeAdmin.bind(this)
@@ -17,7 +22,7 @@ class Member extends Component {
         const { admin, name, thumbnail, email, makeAdmin } = this.props
 
         return (
-            <div className="member">
+            <div className="member" style={this.style}>
                 <h1>{name} {(admin) ? <FaShield /> : null}</h1>
                 <a className="member__make-amin" href="#" onClick={this.makeAdmin}>Make ADMIN</a>
                 <img src={thumbnail} />
